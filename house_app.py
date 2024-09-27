@@ -44,6 +44,6 @@ if st.button('Estimate Price'):
                   icon=folium.Icon(color='blue')).add_to(house_map)
 
     # Render the map in Streamlit
-    st_folium(house_map, width=725, height=500)
+    #st_folium(house_map, width=725, height=500)
 
 
