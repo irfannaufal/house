@@ -17,18 +17,6 @@ total_rooms = st.sidebar.slider('Total room area', 0, 50000, 2000)
 total_bedrooms = st.sidebar.slider('Total bedroom area', 0, 50000, 500)
 lat = st.sidebar.number_input("Latitude", 32.5121, 42.0126, 37.3, step=0.1)
 long = st.sidebar.number_input("Longitude", -124.6509, -114.1315, -122.37, step=0.1)
-
-if st.button('Estimate Price'):
-    # Prepare input features (assuming your model expects these features in this order)
-    input_features = np.array([housing_median_age, total_rooms, total_bedrooms, population, 
-                               households, median_income, lat, long]).reshape(1, -1)
-
-    # Make prediction
-    with st.spinner("Calculating..."):
-        predicted_price = model.predict(input_features)  # Use model.predict 
-
-    st.success(f"Estimated House Price: ${predicted_price[0]:,.2f}")
-
 def create_map(data):
     # Initialize the map
     m = folium.Map(location=[data['latitude'].mean(), data['longitude'].mean()], zoom_start=12)
@@ -43,5 +31,22 @@ def create_map(data):
         ).add_to(marker_cluster)
     
     return m
+ map_ = create_map(data)
+    
+    # Display the map
+    st.markdown(map_._repr_html_(), unsafe_a
+
+if st.button('Estimate Price'):
+    # Prepare input features (assuming your model expects these features in this order)
+    input_features = np.array([housing_median_age, total_rooms, total_bedrooms, population, 
+                               households, median_income, lat, long]).reshape(1, -1)
+
+    # Make prediction
+    with st.spinner("Calculating..."):
+        predicted_price = model.predict(input_features)  # Use model.predict 
+
+    st.success(f"Estimated House Price: ${predicted_price[0]:,.2f}")
+
+llow_html=True)
 
 
