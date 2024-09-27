@@ -43,6 +43,6 @@ if st.button('Estimate Price'):
                   popup=f"Estimated Price: ${predicted_price[0]:,.2f}", 
                   icon=folium.Icon(color='blue')).add_to(house_map)
 
-    
+    st_folium(house_map, width=725)
 
 
