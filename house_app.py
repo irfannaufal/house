@@ -2,6 +2,8 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 import pickle
+import folium
+from folium.plugins import MarkerCluster
 
 # Load the model 
 with open('house_xgb_model.pkl', 'rb') as f:
