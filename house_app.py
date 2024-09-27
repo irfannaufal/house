@@ -35,10 +35,10 @@ def create_map(data):
     
     return m
     
-    map_ = create_map(data)
+    # map_ = create_map(data)
     
     # Display the map
-    st.markdown(map_._repr_html_(), unsafe_a
+    # st.markdown(map_._repr_html_(), unsafe_a
 
 if st.button('Estimate Price'):
     # Prepare input features (assuming your model expects these features in this order)
