@@ -10,21 +10,6 @@ import xgboost
 with open('house_xgb_model.pkl', 'rb') as f:
     model = pickle.load(f)
 
-feature_names = xgbReg.get_booster().feature_names
-#print(feature_names) 
-
-# Choose the feature for analysis (use one variable, not two)
-feature_to_analyze = 'median_income'  
-
-# Create a TreeExplainer 
-explainer = shap.TreeExplainer(xgbReg)
-
-# Calculate SHAP values
-shap_values = explainer.shap_values(X_new)
-
-# Summary Plot
-shap.summary_plot(shap_values, X_new, feature_names=feature_names)
-
 st.title("California Housing Prediction App")
 st.sidebar.header("Input Features")
 housing_median_age = st.sidebar.slider('Average age of house (years)', 0.0, 200.0, 50.0)
@@ -61,6 +46,5 @@ def create_map(data):
     
     return m
 
-plt.show() 
 
 
