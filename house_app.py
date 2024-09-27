@@ -2,14 +2,11 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 import pickle
-import shap
-import matplotlib.pyplot as plt
-import xgboost
 
 # Load the model 
 with open('house_xgb_model.pkl', 'rb') as f:
     model = pickle.load(f)
-    
+
 st.title("California Housing Prediction App")
 st.sidebar.header("Input Features")
 housing_median_age = st.sidebar.slider('Average age of house (years)', 0.0, 200.0, 50.0)
@@ -31,20 +28,5 @@ if st.button('Estimate Price'):
         predicted_price = model.predict(input_features)  # Use model.predict 
 
     st.success(f"Estimated House Price: ${predicted_price[0]:,.2f}")
-def create_map(data):
-    # Initialize the map
-    m = folium.Map(location=[data['latitude'].mean(), data['longitude'].mean()], zoom_start=12)
-    marker_cluster = MarkerCluster().add_to(m)
-    
-    # Add markers to the map
-    for _, row in data.iterrows():
-        folium.Marker(
-            location=[row['latitude'], row['longitude']],
-            popup=f"Price: ${row['price']}",
-            icon=folium.Icon(color='blue')
-        ).add_to(marker_cluster)
-    
-    return m
-
 
 
