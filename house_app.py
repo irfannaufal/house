@@ -9,7 +9,7 @@ import xgboost
 # Load the model 
 with open('house_xgb_model.pkl', 'rb') as f:
     model = pickle.load(f)
-
+    
 st.title("California Housing Prediction App")
 st.sidebar.header("Input Features")
 housing_median_age = st.sidebar.slider('Average age of house (years)', 0.0, 200.0, 50.0)
