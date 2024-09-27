@@ -29,4 +29,19 @@ if st.button('Estimate Price'):
 
     st.success(f"Estimated House Price: ${predicted_price[0]:,.2f}")
 
+def create_map(data):
+    # Initialize the map
+    m = folium.Map(location=[data['latitude'].mean(), data['longitude'].mean()], zoom_start=12)
+    marker_cluster = MarkerCluster().add_to(m)
+    
+    # Add markers to the map
+    for _, row in data.iterrows():
+        folium.Marker(
+            location=[row['latitude'], row['longitude']],
+            popup=f"Price: ${row['price']}",
+            icon=folium.Icon(color='blue')
+        ).add_to(marker_cluster)
+    
+    return m
+
 
